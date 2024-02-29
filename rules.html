@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DirtyCloud - Only reliable anonymous hosting</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">
+        <a href="index.html">
+        <img class="letter-logo" src="assets/letter-logo.png" alt="">
+        </a>
+      </div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="vps.html">VPS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+          <li><a href="rules.html">RULES</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">
+        <a href="index.html"><img class="letter-logo" src="assets/letter-logo.png" alt=""></a>
+      </div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="vps.html" onclick="toggleMenu()">VPS</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">CONTACT</a></li>
+          <li><a href="rules.html" onclick="toggleMenu()">RULES</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container1">
+        <img class="logo-main" src="./assets/logo.png" alt="John Doe profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1"></p>
+        <h1 class="title" style="font-size: 3.5rem;">The Rules</h1>
+        <p class="section__text__p2">YOU SHOULD KNOW</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.location='whmcs/index.php/login'"
+          >
+            Login
+          </button>
+          <button class="btn btn-color-1" onclick="window.location='/whmcs/register.php'">
+            Register
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="experience">
+      <h1 class="title">Account Termination Policy</h1>
+      <div class="experience-details-container" style="margin-bottom: 60rem;">
+        <div class="about-containers">
+          <div class="details-container" style="border-color: transparent;">
+            <h2 class="experience-sub-title" style="font-size: 2rem;">Procedure</h2>
+            <div class="rules-image" style="text-align: left;">
+              <div class="policy">
+                <h1 style="padding-bottom: 1rem;">Infraction Consequences</h1>
+                <p style="margin-bottom: 3rem; color: black;">Any violation or infraction of the rules outlined in our policies may result in the immediate termination of your account and services with DirtyCloud.
+                  <br>The decision to terminate accounts will be made at the discretion of the DirtyCloud team and is final.</p>
+                <h1 style="padding-bottom: 1rem;">Notification</h1>
+                <p style="margin-bottom: 3rem; color: black;">DirtyCloud may, but is not obligated to, provide notice of account termination.
+                  <br>However, in cases of severe policy violations or security concerns, immediate termination may occur without prior notification.</p>
+                <h1 style="padding-bottom: 1rem;">Appeals</h2>
+                <p style="color: black;">Users have the right to appeal an account termination by contacting our support team on <a href="https://t.me/dirtycloud">Telegram.</a><br>Appeals will be reviewed on a case-by-case basis, and DirtyCloud reserves the right to accept or deny any appeal.</p>
+              </div>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title" style="font-size: 2rem;">How Can I Get Ban?</h2>
+            <main class="card-rules">
+              <div>
+                <button class="acc-btn-rules">DDOS</button>
+                <div class="acc-content-rules">
+                  <p style="text-align: left;">Any form of DDoS attack is strictly prohibited
+                    <br>(all type of layer attack).</p>
+                </div>
+                <button class="acc-btn-rules">
+                  Prohibited Geographic Targeting
+                </button>
+                <div class="acc-content-rules">
+                  <p style="text-align: left;">
+                    In accordance with our policies, we strictly prohibit the targeting of users located in Russia or in CIS related country.
+                    <br>Violations of this rule will result in immediate termination of services, without prior notice or warning.
+                  </p>
+                </div>
+                <button class="acc-btn-rules">
+                  Prohibited Content
+                </button>
+                <div class="acc-content-rules">
+                  <p style="text-align: left;">
+                    Hosting, engaging in, or facilitating any activities related to child and animal abuse or terrorism on our servers is strictly forbidden.
+                  </p>
+                </div>
+                <button class="acc-btn-rules">
+                  Network Abuse
+                </button>
+                <div class="acc-content-rules">
+                  <p style="text-align: left;">
+                    The intentional overloading of DirtyCloud's network infrastructure is strictly prohibited. This includes, but is not limited to, activities such as excessive bandwidth consumption, Distributed Denial of Service (DDoS) attacks, or any other actions that significantly degrade network performance.
+                  </p>
+                </div>
+                <button class="acc-btn-rules">
+                  Spoofing
+                </button>
+                <div class="acc-content-rules">
+                  <p style="text-align: left; margin-bottom: 1rem;">
+                    Network spoofing, in any form, is strictly forbidden. Spoofing involves manipulating network packets or data to deceive or mislead our network systems or other users. This includes source IP address spoofing, MAC address spoofing, or any other method used to falsify network identity.
+                  </p>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact" style="padding-top: 20rem;">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Us</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="/whmcs/supporttickets.php">Support Ticket</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/telegram.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://t.me/dirtycloud">Telegram</a></p>
+        </div>
+      </div>
+    </section>
+    <footer style="padding-top: 12rem;">
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="vps.html">VPS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+            <li><a href="rules.html">RULES</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2021-2023 DirtyCloud. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
