@@ -66,6 +66,17 @@ a:hover {
   cursor: default;
 }
 
+.btn-nav {
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+}
+
+.cart-icon img {
+  width: 3vw;
+  height: auto;
+}
+
 /* HAMBURGER MENU */
 
 #hamburger-nav {
@@ -160,9 +171,9 @@ section {
   display: flex;
 }
 
-/* PROFILE SECTION */
+/* intro */
 
-#profile {
+#intro {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -213,13 +224,6 @@ section {
 .title {
   font-size: 3rem;
   text-align: center;
-}
-
-#socials-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  gap: 1rem;
 }
 
 /* ICONS */
@@ -308,30 +312,10 @@ section {
   border-radius: 2rem;
 }
 
-.arrow {
-  position: absolute;
-  right: -5rem;
-  bottom: 2.5rem;
-}
-
 .details-container {
   padding: 1.5rem;
   padding-left: 10vh;
   padding-right: 10vh;
-  flex: 1;
-  background: white;
-  border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
-  text-align: center;
-}
-
-.details-container-plesk {
-  padding: 1.5rem;
-  padding-left: 10vh;
-  padding-right: 10vh;
-  margin-left: 20%; 
-  margin-right: 20%;
   flex: 1;
   background: white;
   border-radius: 2rem;
@@ -475,6 +459,14 @@ article .icon {
   margin-top: 25vh;
 }
 
+#contact-index {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 30vh;
+  margin-top: 25vh;
+}
+
 .contact-info-upper-container {
   display: flex;
   justify-content: center;
@@ -544,48 +536,6 @@ footer p {
   padding: 1rem;
 }
 
-.acc-btn-rules {
-  width: 100%;
-  padding: 1.6rem 2rem;
-  font-size: 1.3rem;
-  cursor: pointer;
-  background: inherit;
-  border: none;
-  outline: none;
-  text-align: left;
-  transition: all 0.5s linear;
-  color: rgb(0, 0, 0);
-}
-
-.acc-btn-rules:after {
-  content: "\2022";
-  color: #000000;
-  float: right;
-  transition: all 0.3s linear;
-  width: 48px;
-  height: 48px;
-}
-
-.acc-btn-rules.is-open:after {
-  transform: rotate(90deg);
-}
-
-.acc-content-rules {
-  max-height: 0;
-  color: fff;
-  margin: 0 2rem 20px;
-  padding-left: 1rem;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-  border-bottom: 1px solid #ccc;
-}
-
-.acc-content-rules p-rules {
-  font-size: medium;
-  text-align: left;
-  margin-bottom: 10px;
-}
-
 .credit-rules {
   text-align: center;
   padding: 1rem;
@@ -624,16 +574,37 @@ footer-rules {
 
 @media screen and (max-width: 768px) {
   #contact {
-  margin-top: 0vh;
+    margin-top: 55vh
   }
+
+  #contact-index {
+    margin-top: 100vh;
+  }
+
   .flex-rules {
       flex-direction: column;
   }
+
   .flex2-rules {
       border: none;
   }
+
   .card-rules{
       width: 80%;
+  }
+
+  .article-container {
+    justify-content: center;
+    align-items: center;
+  }
+  .about-containers {
+    flex-direction: column;
+    height: 30vh;
+  }
+
+  .details-container{
+    width: 25vw;
+    justify-content: center;
   }
 
   .footer-logo-rules {
@@ -645,5 +616,28 @@ footer-rules {
   .footer-images-rules img-rules {
       max-width: 5%;
       margin: 0 10px;
+  }
+
+  #nav {
+    display: flex;
+  }
+
+  #desktop-nav {
+    display: none;
+  }
+
+  #hamburger-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    gap: 2vw;
+    margin-right: 10vw;
+  }
+
+  .hamburger-menu img {
+    width: 10vw;
   }
 }

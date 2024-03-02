@@ -5,15 +5,25 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
-const btns = document.querySelectorAll(".acc-btn-rules");
-
 function accordion() {
   this.classList.toggle("is-open");
-
   const content = this.nextElementSibling;
-
-  if (content.style.maxHeight) content.style.maxHeight = null;
-  else content.style.maxHeight = content.scrollHeight + "px";
+  content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
 }
 
-btns.forEach((el) => el.addEventListener("click", accordion));
+document.querySelectorAll(".acc-btn-rules").forEach(btn => {
+  if (btn) {
+    btn.addEventListener("click", accordion);
+  }
+});
+
+const buyButton = document.querySelector('.btn-color-1');
+
+buyButton.addEventListener('click', () => {
+  let premium = parseInt(localStorage.getItem('premium')) || 0;
+  premium++;
+
+  localStorage.setItem('premium', premium);
+
+  console.log(`Buy count: ${premium}`);
+});
