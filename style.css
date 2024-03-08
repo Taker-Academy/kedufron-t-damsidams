@@ -19,6 +19,10 @@ p {
   color: rgb(85, 85, 85);
 }
 
+table, th, td {
+  border:1px solid black;
+}
+
 /* TRANSITION */
 
 a,
@@ -113,6 +117,7 @@ a:hover {
   max-height: 0;
   overflow: hidden;
   transition: all 0.3 ease-in-out;
+  z-index: 2;
 }
 
 .menu-links a {
@@ -445,7 +450,7 @@ article .icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -250%);
   color: white;
 }
 
@@ -572,13 +577,79 @@ footer-rules {
   margin: 0 10px;
 }
 
+/* CART */
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
+  gap: 5vw;
+  padding: 1.5rem;
+  flex: 1;
+  background: white;
+  border-radius: 2rem;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.tables {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 100%;
+}
+
+.tables th, .tables td {
+  padding: 1rem;
+}
+
+.tables th {
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+.tables td {
+  text-align: center;
+}
+
+.tables th, .tables td {
+  border: 1px solid #dddddd;
+}
+
+.tables tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tables tr:hover {
+  background-color: #f2f2f2;
+}
+
+.cart-img {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.centered {
+  align-items: center;
+}
+
 @media screen and (max-width: 768px) {
   #contact {
-    margin-top: 55vh
+    margin-top: 65vh;
+    margin-bottom: 10vh;
   }
 
   #contact-index {
     margin-top: 100vh;
+    margin-bottom: 10vh;
   }
 
   .flex-rules {
@@ -603,8 +674,10 @@ footer-rules {
   }
 
   .details-container{
-    width: 25vw;
+    width: 60vw;
     justify-content: center;
+    padding-left: 10vw;
+    padding-right: 10vw;
   }
 
   .footer-logo-rules {
@@ -639,5 +712,20 @@ footer-rules {
 
   .hamburger-menu img {
     width: 10vw;
+  }
+
+  .coffin_img {
+    width: 60vw;
+  }
+
+  .cart-container {
+    flex-direction: column;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+
+  .tables {
+    width: 100%;
+    overflow-x: auto;
   }
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OXMOX - DIE WITH STYLE</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">
+        <a href="index.html">
+          <img class="letter-logo" src="assets/letter-logo.png" alt="">
+        </a>
+      </div>
+      <div class="btn-nav">
+        <div>
+          <ul class="nav-links">
+            <li><a href="eco.html">ECO</a></li>
+            <li><a href="premium.html">PREMIUM</a></li>
+          </ul>
+        </div>
+        <div class="cart-icon">
+          <a href="cart.html"><img src="assets/cart.png" alt="Cart"></a>
+        </div>
+    </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">
+        <a href="index.html"><img class="letter-logo" src="assets/letter-logo.png" alt=""></a>
+      </div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="eco.html" onclick="toggleMenu()">ECO</a></li>
+          <li><a href="premium.html" onclick="toggleMenu()">PREMIUM</a></li>
+          <li class="cart-icon"><a href="cart.html"><img src="assets/cart.png" alt="Cart"></a></li>
+        </div>
+      </div>
+    </nav>
+  <section id="experience">
+    <h1 class="title">Your Cart</h1>
+    <div class="experience-details-container">
+      <div class="cart">
+        <table class="tables">
+          <tr>
+            <th>PRODUCT</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>SUBTOTAL</th>
+          </tr>
+          <tbody id="cart-items"></tbody>
+        </table>
+        <button id="buy-now-btn" class="btn btn-primary" onclick="handleBuyNow()">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</html>
