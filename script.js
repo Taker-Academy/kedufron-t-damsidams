@@ -17,87 +17,7 @@ document.querySelectorAll(".acc-btn-rules").forEach(btn => {
   }
 });
 
-if (document.querySelector('.premium')) {
-  const premiumBtn = document.querySelector('.premium');
 
-  premiumBtn.addEventListener('click', () => {
-    let premium = parseInt(localStorage.getItem('premium')) || 0;
-    premium++;
-
-    localStorage.setItem('premium', premium);
-
-    console.log(`Premium: ${premium}`);
-  });
-}
-
-if (document.querySelector('.eco')) {
-  const ecoBtn = document.querySelector('.eco');
-
-  ecoBtn.addEventListener('click', () => {
-    let eco = parseInt(localStorage.getItem('eco')) || 0;
-    eco++;
-
-    localStorage.setItem('eco', eco);
-
-    console.log(`eco: ${eco}`);
-  });
-}
-
-function updateCart() {
-  const cartItems = document.getElementById('cart-items');
-  cartItems.innerHTML = '';
-
-  const premiumQuantity = parseInt(localStorage.getItem('premium')) || 0;
-  const ecoQuantity = parseInt(localStorage.getItem('eco')) || 0;
-
-  let cartRows = '';
-
-  function generateCoffinRow(coffinType, price, quantity) {
-    const subtotal = quantity * price;
-    const formattedSubtotal = subtotal.toFixed(2);
-    return `
-      <tr>
-        <td class="cart-img">
-          <h4>${coffinType} Coffin</h4>
-          <a href="assets/${coffinType.toLowerCase()}.png">
-            <div class="coffin-cotainer">
-             <img class="coffin_img" src="assets/${coffinType.toLowerCase()}.png" alt="">
-            <div class="centered">PREVIEW</div>
-          </a>
-        </td>
-        <td>${price}€</td>
-        <td>
-        <div class="quantity-container">
-            <button class="quantity-btn minus">-</button>
-            <input type="number" class="quantity-input" value="${quantity}" min="0" data-coffin-type="${coffinType}">
-            <button class="quantity-btn plus">+</button>
-          </div>
-        </td>
-        <td>${formattedSubtotal}€</td>
-      </tr>
-    `;
-  }
-
-  if (premiumQuantity > 0) {
-    cartRows += generateCoffinRow('PREMIUM', 8999.99, premiumQuantity);
-  }
-
-  if (ecoQuantity > 0) {
-    cartRows += generateCoffinRow('ECO', 4999.99, ecoQuantity);
-  }
-
-  cartItems.innerHTML = cartRows;
-
-  if (!cartRows) {
-    cartItems.innerHTML = '<tr><td colspan="4">Your cart is empty!</td></tr>';
-  }
-
-  const quantityBtns = document.querySelectorAll('.quantity-btn');
-
-  quantityBtns.forEach(btn => {
-    btn.addEventListener('click', handleQuantityChange);
-  });
-}
 
 function handleQuantityChange(event) {
   const btn = event.target;
@@ -119,25 +39,36 @@ function handleQuantityChange(event) {
   updateCart();
 }
 
-function handleBuyNow() {
+function handleBuyNow(event) {
+  event.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const address = document.getElementById('address').value.trim();
+
+  if (email === '' || name === '' || address === '') {
+    alert('Please fill in all required fields: email, name, and address.');
+    return;
+  }
+
   const cartItems = document.querySelectorAll('.quantity-input');
   const orderItems = [];
 
   cartItems.forEach(item => {
     const quantity = parseInt(item.value);
-    const id = parseInt(item.dataset.itemId);
+    const itemId = parseInt(item.dataset.itemId);
     if (quantity > 0) {
-      orderItems.push({ id, amount: quantity });
+      orderItems.push({ id: itemId, amount: quantity });
     }
   });
 
   const orderData = {
-    email: "client@example.com",
-    name: "Client Name",
-    address: "Delivery Address",
+    email: email,
+    name: name,
+    address: address,
     cart: orderItems
   };
 
+  console.log(orderData);
   fetch('https://api.kedufront.juniortaker.com/order/', {
     method: 'POST',
     headers: {
@@ -147,18 +78,103 @@ function handleBuyNow() {
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Failed to place the order');
+      throw new Error('Erreur lors de la commande');
     }
     return response.json();
   })
   .then(data => {
     console.log(data);
-    alert('Order placed successfully!');
+    const message = `Commande exécutée avec succès,\nNuméro de commande : ${data.command_id}`;
+    alert(message);
   })
   .catch(error => {
     console.error('Error:', error);
-    alert('Failed to place the order. Please try again.');
+    alert('Erreur lors de la commande');
   });
 }
 
-window.onload = updateCart;
+async function fetchItems() {
+  try {
+    const response = await fetch('https://api.kedufront.juniortaker.com/item/');
+    if (!response.ok) {
+      throw new Error('Failed to fetch items');
+    }
+    const items = await response.json();
+    displayItems(items);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+function displayItems(items) {
+  const itemsContainer = document.querySelector('.items-container');
+
+  itemsContainer.innerHTML = '';
+
+  items.forEach(item => {
+    const itemElement = document.createElement('div');
+    itemElement.classList.add('item');
+
+    const anchorTag = document.createElement('a');
+    anchorTag.href = `product.html?id=${item._id}`;
+    const imageUrl = ``;
+    anchorTag.innerHTML = `
+      <img src="https://api.kedufront.juniortaker.com/item/picture/${item._id}" alt="${item.name}" class="item-image">
+      <div class="item-details">
+        <h2 class="item-name">${item.name}</h2>
+        <p class="item-description">${item.description}</p>
+        <p class="item-price">Price: ${item.price}€</p>
+      </div>
+    `;
+
+    itemElement.appendChild(anchorTag);
+
+    itemsContainer.appendChild(itemElement);
+  });
+}
+
+async function fetchProductDetails() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+  try {
+    const response = await fetch(`https://api.kedufront.juniortaker.com/item/${productId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch product details');
+    }
+    const product = await response.json();
+    const productTitle = document.querySelector('.product-title');
+    const productDescription = document.querySelector('.product-description');
+    const productPrice = document.querySelector('.product-price');
+    const productImage = document.querySelector('.product-image');
+
+    productTitle.textContent = product.item.name;
+    productDescription.textContent = product.item.description;
+    productPrice.textContent = `Price: ${product.item.price}€`;
+
+    const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${productId}`;
+    console.log(imageUrl);
+    productImage.src = imageUrl;
+    if (document.querySelector('.product')) {
+      const Btn = document.querySelector('.product');
+
+      Btn.addEventListener('click', () => {
+        let productCart = parseInt(localStorage.getItem(product.item.name)) || 0;
+        productCart++;
+        localStorage.setItem(product.item.name, productCart);
+        console.log(`product: ${productCart}`);
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+if (document.querySelector('.product-title'))
+  fetchProductDetails();
+
+
+if (document.querySelector('.items-container'))
+  window.onload = fetchItems;
+
+if (document.querySelector('.form-group'))
+  window.onload = updateCart;
