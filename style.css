@@ -522,7 +522,7 @@ input[type="email"] {
 }
 
 .item {
-  width: 300px;
+  width: 10vw;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -568,7 +568,7 @@ input[type="email"] {
 }
 
 .product-container {
-  max-width: 800px;
+  max-width: 30vw;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
