@@ -244,6 +244,7 @@ if (document.querySelector('.confirmed')) {
         commandIdSpan.textContent = commandId;
     }
   });
+  localStorage.clear();
 }
 
 if (document.querySelector('.product-title'))
