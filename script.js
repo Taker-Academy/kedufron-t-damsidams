@@ -106,6 +106,7 @@ function handleBuyNow(event) {
     console.log(data);
     const message = `Commande exécutée avec succès,\nNuméro de commande : ${data.command_id}`;
     alert(message);
+    window.location.href = `confirmation.html?command_id=${data.command_id}`;
   })
   .catch(error => {
     console.error('Error:', error);
@@ -234,6 +235,16 @@ async function fetchProductDetails() {
   }
 }
 
+if (document.querySelector('.confirmed')) {
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const commandId = urlParams.get('command_id');
+    if (commandId) {
+        const commandIdSpan = document.getElementById('command-id-value');
+        commandIdSpan.textContent = commandId;
+    }
+  });
+}
 
 if (document.querySelector('.product-title'))
   fetchProductDetails();
